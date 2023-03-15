@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { addTodo, toggleTodo, deleteTodo } from './functions'
+import { Todo } from './types/Todo'
 
 /**
  * Add todo
@@ -11,19 +12,19 @@ describe('add todo', () => {
     const shortTodo = 'Le'
 
 	it('should add a todo', () => {
-        const todos: any = []
+        let todos: Todo[] = []
         addTodo(newTodo, todos)
         expect(todos).toContainEqual({ title: newTodo, id: 1, completed: false })
 	})
 
     it('should not add a todo with empty title', () => {
-        const todos: any = []
+        const todos: Todo[] = []
         addTodo(emptyTodo, todos)
         expect(todos).toEqual([])
 	})
 
     it('should not add a todo with title shorter than 3 characters', () => {
-        const todos: any = []
+        const todos: Todo[] = []
         addTodo(shortTodo, todos)
         expect(todos).toEqual([])
 	})
