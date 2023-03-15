@@ -6,14 +6,28 @@ import { addTodo, toggleTodo, deleteTodo } from './functions'
  */
 describe('add todo', () => {
 
-	it.todo('should add a todo', () => {
+    const newTodo = 'Learn Unit Testing'
+    const emptyTodo = ''
+    const shortTodo = 'Le'
+
+	it('should add a todo', () => {
+        const todos: any = []
+        addTodo(newTodo, todos)
+        expect(todos).toContainEqual({ title: newTodo, id: 1, completed: false })
 	})
 
-    it.todo('should not add a todo with empty title', () => {
+    it('should not add a todo with empty title', () => {
+        const todos: any = []
+        addTodo(emptyTodo, todos)
+        expect(todos).toEqual([])
 	})
 
-    it.todo('should not add a todo with title shorter than 3 characters', () => {
+    it('should not add a todo with title shorter than 3 characters', () => {
+        const todos: any = []
+        addTodo(shortTodo, todos)
+        expect(todos).toEqual([])
 	})
+
 })
 
 /**
