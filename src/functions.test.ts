@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { addTodo, toggleTodo, deleteTodo } from './functions'
 
 /**
  * Add todo
