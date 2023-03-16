@@ -8,6 +8,12 @@ const newTodoTitle = 'Learn Unit Testing'
 const emptyTodoTitle = ''
 const shortTodoTitle = 'Le'
 
+const todo: Todo = {
+	id: 1,
+	title: 'My test todo',
+	completed: false,
+}
+
 /**
  * Add todo
  */
@@ -66,10 +72,26 @@ describe('add todo', () => {
  */
 describe('toggle todo', () => {
 
-	it.todo('should toggle a todo', () => {
+	it('should toggle a todo', () => {
+        const todos = [todo]
+        const result = toggleTodo(todo.id, todos)
+
+        // successful toggling
+        expect(result.success).toBe(true)
+
+        // it toggled
+        expect(todo.completed).toBe(true)
 	})
 
-    it.todo('should not toggle a todo that does not exist', () => {
+    it('should not toggle a todo that does not exist', () => {
+        const todos = [todo]
+        const result = toggleTodo(2, todos)
+
+        // *NOT* successful toggling
+        expect(result.success).toBe(false)
+
+        // it *DID NOT* toggle because the todo was not found
+        expect(result.error).toBe('Todo not found')
 	})
 
 })
@@ -80,9 +102,15 @@ describe('toggle todo', () => {
 describe('delete todo', () => {
 
 	it.todo('should delete a todo', () => {
+        //
+
+        //
 	})
 
     it.todo('should not delete a todo that does not exist', () => {
+        //
+
+        //
 	})
 
 })
