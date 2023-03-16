@@ -35,7 +35,7 @@ describe('add todo', () => {
         // the list is not still empty
         expect(todos.length).toBe(1)
 
-        // the todo added is the todo that was sent in
+        // the todo added is the todo that was sent in (missing: that exact todo was added)
 
 	})
 
@@ -72,8 +72,9 @@ describe('add todo', () => {
  */
 describe('toggle todo', () => {
 
+    const todos = [todo]
+
 	it('should toggle a todo', () => {
-        const todos = [todo]
         const result = toggleTodo(todo.id, todos)
 
         // successful toggling
@@ -84,8 +85,7 @@ describe('toggle todo', () => {
 	})
 
     it('should not toggle a todo that does not exist', () => {
-        const todos = [todo]
-        const result = toggleTodo(2, todos)
+        const result = toggleTodo(1337, todos)
 
         // *NOT* successful toggling
         expect(result.success).toBe(false)
@@ -101,16 +101,26 @@ describe('toggle todo', () => {
  */
 describe('delete todo', () => {
 
-	it.todo('should delete a todo', () => {
-        //
+    const todos = [todo]
 
-        //
+	it('should delete a todo', () => {
+        const result = deleteTodo(todo.id, todos)
+
+        // successful delete
+        expect(result.success).toBe(true)
+
+        // todo is deleted (missing: that exact todo was deleted)
+        expect(todos.length).toBe(0)
 	})
 
-    it.todo('should not delete a todo that does not exist', () => {
-        //
+    it('should not delete a todo that does not exist', () => {
+        const result = toggleTodo(1337, todos)
 
-        //
+        // *NOT* successful delete
+        expect(result.success).toBe(false)
+
+        // todo did not exist
+        expect(result.error).toBe('Todo not found')
 	})
 
 })
