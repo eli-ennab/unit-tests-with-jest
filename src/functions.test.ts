@@ -114,8 +114,18 @@ describe('delete todo', () => {
         // successful delete
         expect(result.success).toBe(true)
 
-        // todo is deleted (missing: that exact todo was deleted)
+        // todo is deleted
         expect(todos.length).toBe(0)
+
+        /**
+         * Options (not sure if they are correct)
+         */
+
+        // that exact todo is deleted
+        expect(todo.id).toBe(1)
+
+        // that exact todo is deleted
+        expect(todos).not.toContainEqual(todo);
 	})
 
     it('should not delete a todo that does not exist', () => {
