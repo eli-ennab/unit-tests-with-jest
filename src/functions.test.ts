@@ -27,7 +27,7 @@ describe('add todo', () => {
         const result = addTodo(newTodoTitle, todos)
 
         // can add a todo
-        expect(todos).toContainEqual({ title: newTodoTitle, id: 1, completed: false })
+        expect(todos).toContainEqual({ id: 1, title: newTodoTitle, completed: false })
 
         // has successfully added a todo
         expect(result.success).toBe(true)
@@ -35,7 +35,12 @@ describe('add todo', () => {
         // the list is not still empty
         expect(todos.length).toBe(1)
 
-        // the todo added is the todo that was sent in (missing: that exact todo was added)
+        // added todo is the todo that was sent in
+        expect(todos[0]).toEqual({
+            id: 1,
+            title: newTodoTitle,
+            completed: false,
+        })
 
 	})
 
