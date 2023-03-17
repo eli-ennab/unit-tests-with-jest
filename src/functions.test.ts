@@ -36,7 +36,6 @@ describe('add todo', () => {
 
         // added todo is the todo that was sent in
         expect(todos[0]).toEqual(todo)
-
 	})
 
     it('should not add a todo with empty title', () => {
@@ -50,6 +49,7 @@ describe('add todo', () => {
 
         // the list is still empty
         expect(todos).toEqual([])
+        expect(todos.length).toBe(0)
 	})
 
     it('should not add a todo with title shorter than 3 characters', () => {
@@ -63,8 +63,8 @@ describe('add todo', () => {
 
         // the list is still empty
         expect(todos).toEqual([])
+        expect(todos.length).toBe(0)
 	})
-
 })
 
 /**
@@ -93,7 +93,6 @@ describe('toggle todo', () => {
         // it *DID NOT* toggle because the todo was not found
         expect(result.error).toBe('Todo not found')
 	})
-
 })
 
 /**
@@ -112,15 +111,9 @@ describe('delete todo', () => {
         // todo is deleted
         expect(todos.length).toBe(0)
 
-        /**
-         * Options (not sure if they are correct)
-         */
-
         // that exact todo is deleted
         expect(todo.id).toBe(1)
-
-        // that exact todo is deleted
-        expect(todos).not.toContainEqual(todo);
+        expect(todos).not.toContainEqual(todo)
 	})
 
     it('should not delete a todo that does not exist', () => {
@@ -132,5 +125,4 @@ describe('delete todo', () => {
         // todo did not exist
         expect(result.error).toBe('Todo not found')
 	})
-
 })
