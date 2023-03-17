@@ -4,15 +4,14 @@ import { Todo } from './types/Todo'
 
 let todos: Todo[] = []
 
-const newTodoTitle = 'Learn Unit Testing'
-const emptyTodoTitle = ''
-const shortTodoTitle = 'Le'
-
 const todo: Todo = {
 	id: 1,
 	title: 'My test todo',
 	completed: false,
 }
+
+const emptyTodoTitle = ''
+const shortTodoTitle = 'Le'
 
 /**
  * Add todo
@@ -24,10 +23,10 @@ describe('add todo', () => {
 	})
 
 	it('should add a todo', () => {
-        const result = addTodo(newTodoTitle, todos)
+        const result = addTodo(todo.title, todos)
 
         // can add a todo
-        expect(todos).toContainEqual({ id: 1, title: newTodoTitle, completed: false })
+        expect(todos).toContainEqual(todo)
 
         // has successfully added a todo
         expect(result.success).toBe(true)
@@ -36,11 +35,7 @@ describe('add todo', () => {
         expect(todos.length).toBe(1)
 
         // added todo is the todo that was sent in
-        expect(todos[0]).toEqual({
-            id: 1,
-            title: newTodoTitle,
-            completed: false,
-        })
+        expect(todos[0]).toEqual(todo)
 
 	})
 
