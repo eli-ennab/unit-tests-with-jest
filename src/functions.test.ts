@@ -34,20 +34,20 @@ describe('add todo', () => {
         // the list is not still empty
         expect(todos.length).toBe(1)
 
-        // added todo is the todo that was sent in
+        // confirm that the added todo is the todo that was sent in
         expect(todos[0]).toEqual(todo)
 	})
 
     it('should not add a todo with empty title', () => {
         const result = addTodo(emptyTodoTitle, todos)
 
-        // result could not be added
+        // has *NOT* successfully added a todo
         expect(result.success).toBe(false)
 
-        // result could not be added because title was empty
+        // the error is because the title is empty
         expect(result.error).toBe('Title cannot be empty')
 
-        // the list is still empty
+        // confirm that the empty todo is not added (and that the list is still empty)
         expect(todos).toEqual([])
         expect(todos.length).toBe(0)
 	})
@@ -55,13 +55,13 @@ describe('add todo', () => {
     it('should not add a todo with title shorter than 3 characters', () => {
         const result = addTodo(shortTodoTitle, todos)
 
-        // todo could not be added
+        // has *NOT* successfully added a todo
         expect(result.success).toBe(false)
 
-        // result could not be added because title was less than three chars
+        // the error is because the title is less than three chars
         expect(result.error).toBe('Title must be at least 3 characters long')
 
-        // the list is still empty
+        // confirm that the too short todo is not added (and that the list is still empty)
         expect(todos).toEqual([])
         expect(todos.length).toBe(0)
 	})
@@ -77,20 +77,20 @@ describe('toggle todo', () => {
 	it('should toggle a todo', () => {
         const result = toggleTodo(todo.id, todos)
 
-        // successful toggling
+        // has successfully toggled a todo
         expect(result.success).toBe(true)
 
-        // it toggled
+        // confirm that the todo toggled (to completed true)
         expect(todo.completed).toBe(true)
 	})
 
     it('should not toggle a todo that does not exist', () => {
         const result = toggleTodo(1337, todos)
 
-        // *NOT* successful toggling
+        // has *NOT* successfully toggled a todo
         expect(result.success).toBe(false)
 
-        // it *DID NOT* toggle because the todo was not found
+        // the error is because the todo is not found
         expect(result.error).toBe('Todo not found')
 	})
 })
@@ -105,13 +105,13 @@ describe('delete todo', () => {
 	it('should delete a todo', () => {
         const result = deleteTodo(todo.id, todos)
 
-        // successful delete
+        // has successfully deleted a todo
         expect(result.success).toBe(true)
 
-        // todo is deleted
+        // make sure the todo is deleted
         expect(todos.length).toBe(0)
 
-        // that exact todo is deleted
+        // .. and that it is the exact todo that is deleted
         expect(todo.id).toBe(1)
         expect(todos).not.toContainEqual(todo)
 	})
@@ -119,10 +119,10 @@ describe('delete todo', () => {
     it('should not delete a todo that does not exist', () => {
         const result = toggleTodo(1337, todos)
 
-        // *NOT* successful delete
+        // has *NOT* successfully deleted a todo
         expect(result.success).toBe(false)
 
-        // todo did not exist
+        // the error is because the todo is not found
         expect(result.error).toBe('Todo not found')
 	})
 })
