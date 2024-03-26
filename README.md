@@ -1,6 +1,6 @@
 Instructions
 ```sh
-`npm install`
-`npm run dev`
-`npm run coverage`
+npm install
+npm run dev
+npm run coverage
 ```
